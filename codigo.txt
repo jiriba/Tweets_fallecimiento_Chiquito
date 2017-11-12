@@ -1,0 +1,32 @@
+Instalar los paquetes 
+RCurl RJSONIO stringr ROAuth twitteR bitops
+
+library(bitops)
+library(RCurl)
+library(RJSONIO)
+library(stringr)
+library(ROAuth)
+library(twitteR)
+
+
+
+
+# Declare Twitter API Credentials
+api_key <- "jepvZJtrf5oWjl63BVnTCe87O" # From dev.twitter.com
+api_secret <- "xJ65Sr8gQ0AFOW2WupefNFto9v65ybWampeDi3qxGMPTXqiLch" # From dev.twitter.com
+token <- "924212950235312128-jNVkavVLgiUe2I1CiaNWyI1Oo3afehC" # From dev.twitter.com
+token_secret <- "s4Xh5vsKDOs6NmNJWsDcuVqCtlmuW4glcOWyO7kZYx9Fp" # From dev.twitter.com
+
+
+setup_twitter_oauth(api_key, api_secret, token, token_secret)
+
+
+
+tweetsCHQ <- searchTwitter("Chiquito OR 'Chiquito de la Calzada' ", n=500, lang="es", geocode="36.7212737,-4.42139880000002,10km", since="2017-11-11")
+tweetsCHQ.df <- twListToDF(tweetsCHQ)
+# Set the working directory
+setwd('C:/Users/Javi/Desktop/PRACTICA_R')
+write.csv(tweetsCHQ.df, file = "CHIQUITO.csv")
+
+
+
